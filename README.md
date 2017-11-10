@@ -4,7 +4,7 @@
 
 Telegram Bot Server to scan your AWS Account with the tool Prowler https://github.com/Alfresco/prowler, which aplies CIS Security Controls in your AWS Account.
 
-## Code Samples
+## Requirements
 
 First of all, you need to have installed:
  - Create a Telegram Bot with @BotFather
@@ -35,11 +35,10 @@ https://api.telegram.org/bot{}/getUpdates
 
 
 
-
-## Installation
+## Examples
 
 Example:
 
-python bot.py -t 4kjnfjdhahjfadf62627288373 -p "./prowler" -u 73903 7950749 72378932083 -a default
+python AWSbot.py -t 4kjnfjdhahjfadf62627288373 -p "./prowler" -u 73903 7950749 72378932083 -a default
 
 
