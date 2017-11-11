@@ -49,6 +49,11 @@ Search the bot previously created. Torun the scan from your Telegram Account you
 Example: /Nmap 
 ![Telegram](https://i.imgur.com/5FCy9xh.png)
 
+## To do:
+
+- Add more hacking tools to conquer the world
+- Add module to parse the output of diferents tools
+- Refactor and reestructure the code 
 
 
 
