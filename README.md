@@ -1,4 +1,4 @@
-# Telegram Bot Server to monitoring your AWS Account 
+# Telegram Bot Server to monitoring your AWS Account or others nertworks/services
 
 ## Introduction
 
