@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Telegram Bot Server to scan your AWS Account with the tool Prowler https://github.com/Alfresco/prowler, which aplies CIS Security Controls in your AWS Account.
+Telegram Bot Server to scan your AWS Account with the tool Prowler https://github.com/Alfresco/prowler, which aplies CIS Security Controls in your AWS Account. Also, you can use Nmap command remotely from your phone.
 
 ## Requirements
 
@@ -45,6 +45,12 @@ Search the bot previously created. Torun the scan from your Telegram Account you
 ![Telegram](https://i.imgur.com/fqb5x2D.png)
 
 ![Telegram](https://i.imgur.com/TePXVyP.jpg)
+
+
+Example: /Nmap 
+![Telegram](https://i.imgur.com/5FCy9xh.png)
+
+
 
 
 
