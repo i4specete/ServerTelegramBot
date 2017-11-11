@@ -108,10 +108,8 @@ if __name__ == '__main__':
 
     #Create de cli
     botcli = botCli(args.path,url,args.token)
-    last_id =botcli.get_initID()
 
     #Your ID's user
-    chat_id=args.users
-    botcli.run(chat_id)
+    botcli.run(args.users)
 
 
