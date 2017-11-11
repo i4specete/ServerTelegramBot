@@ -40,5 +40,13 @@ Example:
 
 python AWSbot.py -t 4kjnfjdhahjfadf62627288373 -p "./prowler" -u 73903 7950749 72378932083 -a default   
 
+Search the bot previously created. Torun the scan from your Telegram Account you have to send de command "/RunAnalysis
+
+![Telegram](https://i.imgur.com/fqb5x2D.png)
+
 ![Telegram](https://i.imgur.com/TePXVyP.jpg)
+
+
+
+
 
