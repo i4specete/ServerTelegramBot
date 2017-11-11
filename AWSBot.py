@@ -39,8 +39,24 @@ class botCli(object):
 
         return (chat_id,text,m_id)
 
-    def execute_analysis(self,chat_id):
+    def execute_analysis_aws(self,chat_id):
         cmd =[self.path, "-p",self.profile,"-M","mono"]
+        p = subprocess.Popen(cmd,
+                             stdout=subprocess.PIPE,
+                             stderr=subprocess.STDOUT)
+
+        for line in iter(p.stdout.readline, b''):
+            print(line.decode('utf-8'))
+            self.send_message(line.decode('utf-8'),chat_id)
+
+    def execute_nmap(self,chat_id,args):
+        cmd = ["nmap"]
+        args.pop(0)
+
+        for i in args:
+            cmd.append(i)
+        print(cmd)
+
         p = subprocess.Popen(cmd,
                              stdout=subprocess.PIPE,
                              stderr=subprocess.STDOUT)
@@ -61,9 +77,11 @@ class botCli(object):
             if user_id in chat_id and current_id > last_id:
                 last_id = current_id
                 if msg == "/RunAnalysis":
-                    self.execute_analysis(user_id)
+                    self.execute_analysis_aws(user_id)
+                if msg.split(' ', 1)[0] == "/Nmap":
+                    self.execute_nmap(user_id,msg.split())
                 else:
-                    self.send_message("To scan your AWS Account use /RunAnalysis",user_id)
+                    self.send_message("To scan your AWS Account use /RunAnalysis, to scan another network could use /Nmap",user_id)
 
 if __name__ == '__main__':
     #Arguments
