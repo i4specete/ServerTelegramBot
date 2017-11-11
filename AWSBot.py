@@ -11,9 +11,13 @@ class botCli(object):
         self.url= url.format(token)
 
     def get_url(self,url):
-        response = requests.get(url)
-        content = response.content.decode("utf8")
-        return content
+        content = {}
+        try:
+            response = requests.get(url)
+            content = response.content.decode("utf8")
+            return content
+        except requests.exceptions.ConnectionError:
+            print(requests.exceptions.ConnectionError)
 
     def send_message(self,text, chat_id):
         url = self.url + "sendMessage?text={}&chat_id={}".format(text, chat_id)
@@ -79,7 +83,13 @@ class botCli(object):
             if user_id in chat_id and current_id > last_id:
                 last_id = current_id
                 if msg.split(' ', 1)[0] == "/ScanAWS":
-                    self.execute_analysis_aws(user_id,msg.split())
+                    if len(msg.split())==1:
+                        self.send_message(
+                            "Unable to locate credentials. You can configure credentials by running \"aws configure\"",
+                            user_id)
+                    else:
+                        self.execute_analysis_aws(user_id, msg.split())
+
                 if msg.split(' ', 1)[0] == "/Nmap":
                     self.execute_nmap(user_id,msg.split())
                 else:
