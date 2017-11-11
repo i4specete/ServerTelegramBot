@@ -7,8 +7,10 @@ Telegram Bot Server to scan your AWS Account with the tool Prowler https://githu
 ## Requirements
 
 First of all, you need to have installed:
+
  - Create a Telegram Bot with @BotFather
  - awscli https://github.com/aws/aws-cli and use "aws configure" to create a profile.
+ - Install nmap https://nmap.org/
  - prowler https://github.com/Alfresco/prowler
 
   
