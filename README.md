@@ -14,7 +14,7 @@ First of all, you need to have installed:
  - prowler https://github.com/Alfresco/prowler
 
   
-usage: bot.py [-h] --token TOKEN --path PATH --users USERS [USERS ...]  --awsprofile AWSPROFILE, -a AWSPROFILE
+usage: bot.py [-h] --token TOKEN --path PATH --users USERS [USERS ...] 
 
 [+][+] Telegram Bot Server to audit CIS AWS Security Checks
 
@@ -23,9 +23,6 @@ usage: bot.py [-h] --token TOKEN --path PATH --users USERS [USERS ...]  --awspro
   -- token TOKEN, -t TOKEN   Token API Telegram Bot
 
   --path PATH, -p PATH  Prowler Path
-
-  --awsprofile AWSPROFILE, -a AWSPROFILE
-                        Profile AWS previously configured with "aws configure"
 
   --users USERS [USERS ...], -u USERS [USERS ...]
                         Users allowed
@@ -40,11 +37,11 @@ https://api.telegram.org/bot{}/getUpdates
 
 Example:
 
-python AWSbot.py -t 4kjnfjdhahjfadf62627288373 -p "./prowler" -u 73903 7950749 72378932083 -a default   
+python AWSbot.py -t 4kjnfjdhahjfadf62627288373 -p "./prowler" -u 73903 7950749 72378932083 
 
-Search the bot previously created. Torun the scan from your Telegram Account you have to send de command "/RunAnalysis
+Search the bot previously created. Torun the scan from your Telegram Account you have to send de command "/ScanAWS -p {profile}"
 
-![Telegram](https://i.imgur.com/fqb5x2D.png)
+![Telegram](https://i.imgur.com/8Wej4bL.png)
 
 ![Telegram](https://i.imgur.com/TePXVyP.jpg)
 
