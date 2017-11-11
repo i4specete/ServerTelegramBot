@@ -40,5 +40,5 @@ Example:
 
 python AWSbot.py -t 4kjnfjdhahjfadf62627288373 -p "./prowler" -u 73903 7950749 72378932083 -a default   
 
-![picture](https://imgur.com/IxVJqVj)
+![Telegram](https://i.imgur.com/TePXVyP.jpg)
 
