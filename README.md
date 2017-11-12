@@ -20,13 +20,13 @@ To run the server:
 
 
 
-usage: bot.py [-h] --token TOKEN --path PATH --users USERS [USERS ...] 
+usage: AWSBot.py [-h] --token TOKEN --path PATH --users USERS [USERS ...] 
 
 [+][+] Telegram Bot Server to audit CIS AWS Security Checks
 
    -h, --help     show this help message and exit
 
-  -- token TOKEN, -t TOKEN   Token API Telegram Bot
+  --token TOKEN, -t TOKEN   Token API Telegram Bot
 
   --path PATH, -p PATH  Prowler Path
 
