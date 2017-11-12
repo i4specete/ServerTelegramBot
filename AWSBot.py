@@ -2,6 +2,8 @@ import json
 import requests
 import subprocess
 import argparse
+import logging
+import sys
 
 
 class botCli(object):
@@ -11,21 +13,23 @@ class botCli(object):
         self.url= url.format(token)
 
     def get_url(self,url):
-        content = {}
         try:
             response = requests.get(url)
             content = response.content.decode("utf8")
             return content
         except requests.exceptions.ConnectionError:
-            print(requests.exceptions.ConnectionError)
+            logging.error("Problem with Telegram Connection")
 
     def send_message(self,text, chat_id):
         url = self.url + "sendMessage?text={}&chat_id={}".format(text, chat_id)
         self.get_url(url)
 
     def get_json_from_url(self,url):
-        content = self.get_url(url)
-        js = json.loads(content)
+        try:
+            content = self.get_url(url)
+            js = json.loads(content)
+        except TypeError:
+            logging.error("Problem parsing JSON")
         return js
 
     def get_updates(self):
@@ -53,7 +57,7 @@ class botCli(object):
                              stderr=subprocess.STDOUT)
 
         for line in iter(p.stdout.readline, b''):
-            print(line.decode('utf-8'))
+            logging.info(line.decode('utf-8'))
             self.send_message(line.decode('utf-8'),chat_id)
 
     def execute_nmap(self,chat_id,args):
@@ -62,13 +66,12 @@ class botCli(object):
 
         for i in args:
             cmd.append(i)
-        print(cmd)
         p = subprocess.Popen(cmd,
                              stdout=subprocess.PIPE,
                              stderr=subprocess.STDOUT)
 
         for line in iter(p.stdout.readline, b''):
-            print(line.decode('utf-8'))
+            logging.info(line.decode('utf-8'))
             self.send_message(line.decode('utf-8'),chat_id)
 
     def get_initID(self):
@@ -77,7 +80,7 @@ class botCli(object):
 
     def run(self,chat_id):
         last_id = self.get_initID()
-        print("[*][*][*][*][*] Running Telegram Server Bot ... [*][*][*][*][*]")
+        logging.info("[*][*][*][*][*] Running Telegram Server Bot ... [*][*][*][*][*]")
         while True:
             user_id, msg, current_id = self.get_last_chat_id_and_text(self.get_updates())
             if user_id in chat_id and current_id > last_id:
@@ -89,13 +92,25 @@ class botCli(object):
                             user_id)
                     else:
                         self.execute_analysis_aws(user_id, msg.split())
-
+                        logging.info("Request of %i User to execute ScanAWS",user_id)
                 if msg.split(' ', 1)[0] == "/Nmap":
                     self.execute_nmap(user_id,msg.split())
+                    logging.info("Request of %i User to execute Nmap", user_id)
+
                 else:
                     self.send_message("To scan your AWS Account use /ScanAWS -p \"profileAWS\", to scan another network could use /Nmap with {nmap args}",user_id)
+                    logging.info("Request Failed of %i User without corrects parameters", user_id)
 
 if __name__ == '__main__':
+
+    if sys.version_info < (3, 5,):
+        print("To run Telegram Bot Server you must use Python 3.5+")
+        sys.exit(0)
+
+    FORMAT = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+    logging.basicConfig(format=FORMAT,level=logging.INFO)
+
+
     #Arguments
     parser = argparse.ArgumentParser(description='[+][+] Telegram Bot Server to audit CIS AWS Security Checks')
     parser.add_argument('--token','-t', type=str, required=True ,help='Token API Telegram Bot')
