@@ -13,7 +13,13 @@ First of all, you need to have installed:
  - Install nmap https://nmap.org/
  - prowler https://github.com/Alfresco/prowler
 
-  
+To run the server:
+
+pip3 install -r requirements.txt
+pithon3.6 AWSBot.py
+
+
+
 usage: bot.py [-h] --token TOKEN --path PATH --users USERS [USERS ...] 
 
 [+][+] Telegram Bot Server to audit CIS AWS Security Checks
