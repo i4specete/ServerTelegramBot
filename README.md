@@ -15,8 +15,8 @@ First of all, you need to have installed:
 
 To run the server:
 
-pip3 install -r requirements.txt
-pithon3.6 AWSBot.py
+- pip3 install -r requirements.txt
+- python3.6 AWSBot.py
 
 
 
