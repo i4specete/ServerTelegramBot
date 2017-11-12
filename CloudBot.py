@@ -127,7 +127,7 @@ if __name__ == '__main__':
 
 
     #Arguments
-    parser = argparse.ArgumentParser(description='[+][+] Telegram Bot Server to audit CIS AWS Security Checks')
+    parser = argparse.ArgumentParser(description='[+][+] Telegram Bot Server to audit AWS Security Checks')
     parser.add_argument('--token','-t', type=str, required=True ,help='Token API Telegram Bot')
     parser.add_argument('--path',"-p", type=str,  required=True, help='Prowler Path')
     parser.add_argument('--users', '-u',type=int ,required=True , nargs='+', help='Users allowed')
