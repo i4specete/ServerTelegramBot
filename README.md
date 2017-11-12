@@ -1,8 +1,8 @@
-# Telegram Bot Server to monitoring your AWS Account or others nertworks/services
+# CloudBot to monitoring your AWS Account or others nertworks/services
 
 ## Introduction
 
-Telegram Bot Server to scan your AWS Account with the tool Prowler https://github.com/Alfresco/prowler, which aplies CIS Security Controls in your AWS Account. Also, you can use Nmap command remotely from your phone.
+CloudBot to scan your AWS Account with the tool Prowler https://github.com/Alfresco/prowler, which aplies CIS Security Controls in your AWS Account. Also, you can use Nmap command remotely from your phone.
 
 ## Requirements
 
@@ -16,11 +16,11 @@ First of all, you need to have installed:
 To run the server:
 
 - pip3 install -r requirements.txt
-- python3.6 AWSBot.py
+- python3.6 CloudBot.py
 
 
 
-usage: AWSBot.py [-h] --token TOKEN --path PATH --users USERS [USERS ...] 
+usage: CloudBot.py [-h] --token TOKEN --path PATH --users USERS [USERS ...] 
 
 [+][+] Telegram Bot Server to audit CIS AWS Security Checks
 
@@ -43,7 +43,7 @@ https://api.telegram.org/bot{}/getUpdates
 
 Example:
 
-python AWSbot.py -t 4kjnfjdhahjfadf62627288373 -p "./prowler" -u 73903 7950749 72378932083 
+python CloudBot.py -t 4kjnfjdhahjfadf62627288373 -p "./prowler" -u 73903 7950749 72378932083 
 
 Search the bot previously created. Torun the scan from your Telegram Account you have to send de command "/ScanAWS -p {profile}"
 
