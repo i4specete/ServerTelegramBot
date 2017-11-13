@@ -48,32 +48,35 @@ class botCli(object):
 
 
     def execute_analysis_aws(self,chat_id,args):
+        try:
+            cmd =[self.path,"-M","mono"]
+            args.pop(0)
+            for i in args:
+                cmd.append(i)
+            p = subprocess.Popen(cmd,
+                                 stdout=subprocess.PIPE,
+                                 stderr=subprocess.STDOUT)
 
-        cmd =[self.path,"-M","mono"]
-        args.pop(0)
-        for i in args:
-            cmd.append(i)
-        p = subprocess.Popen(cmd,
-                             stdout=subprocess.PIPE,
-                             stderr=subprocess.STDOUT)
-
-        for line in iter(p.stdout.readline, b''):
-            logging.info(line.decode('utf-8'))
-            self.send_message(line.decode('utf-8'),chat_id)
-
+            for line in iter(p.stdout.readline, b''):
+                logging.info(line.decode('utf-8'))
+                self.send_message(line.decode('utf-8'),chat_id)
+        except FileNotFoundError:
+            logging.error("Prowler not found")
     def execute_nmap(self,chat_id,args):
         cmd = ["nmap"]
         args.pop(0)
+        try:
+            for i in args:
+                cmd.append(i)
+            p = subprocess.Popen(cmd,
+                                 stdout=subprocess.PIPE,
+                                 stderr=subprocess.STDOUT)
 
-        for i in args:
-            cmd.append(i)
-        p = subprocess.Popen(cmd,
-                             stdout=subprocess.PIPE,
-                             stderr=subprocess.STDOUT)
-
-        for line in iter(p.stdout.readline, b''):
-            logging.info(line.decode('utf-8'))
-            self.send_message(line.decode('utf-8'),chat_id)
+            for line in iter(p.stdout.readline, b''):
+                logging.info(line.decode('utf-8'))
+                self.send_message(line.decode('utf-8'),chat_id)
+        except FileNotFoundError:
+            logging.error("Nmap not found")
 
     def get_initID(self):
         init_update = 0
