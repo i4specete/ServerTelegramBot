@@ -72,3 +72,6 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+# credentials AWS
+credentials
