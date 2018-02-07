@@ -1,0 +1,45 @@
+FROM smebberson/alpine-base:3.0.0
+
+MAINTAINER Sebastian Ruml <sebastian@sebastianruml.name>; <kxuan.celtik@gmail.com>
+
+RUN echo "@testing http://dl-4.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
+  && apk add --update \
+              musl \
+              build-base \
+              python3 \
+              python3-dev \
+              bash \
+              git \
+  && pip3.5 install --upgrade pip \
+  && rm /var/cache/apk/*
+
+# make some useful symlinks that are expected to exist
+RUN cd /usr/bin \
+  && ln -sf easy_install-3.5 easy_install \
+  && ln -sf idle3.5 idle \
+  && ln -sf pydoc3.5 pydoc \
+  && ln -sf python3.5 python \
+  && ln -sf python-config3.5 python-config \
+&& ln -sf pip3.5 pip
+
+# Prowler + ServerTelegramBot + Nmap + AWS CLI + Git
+RUN apk add --update && apk upgrade && \
+    apk add nmap nmap-scripts \
+            bash \
+            git \
+    && pip3 install awscli \
+    && mkdir /CloudBot && cd /CloudBot \
+    && git clone https://github.com/Alfresco/prowler /CloudBot/prowler \
+    && git clone https://github.com/i4specete/ServerTelegramBot.git /CloudBot/ServerTelegramBot \
+    && cd /CloudBot/ServerTelegramBot \
+    && pip3 install -r requirements.txt \
+    && cd /CloudBot \
+    && rm /var/cache/apk/*
+
+# Add AWS CLI Credentials
+# Attention to add credentials file to gitignore
+RUN mkdir /root/.aws
+ADD credentials /root/.aws/
+
+# Execute CloudBot
+CMD ["/env/bin/python", "python /CloudBot/ServerTelegramBot/CloudBot.py"]
