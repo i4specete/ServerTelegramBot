@@ -38,9 +38,13 @@
 credentials`
 
 
-### Build Container
+### Build Container Debian
 
 `sudo docker build -t cloudbot .`
+
+### Build Container Alpine
+
+`sudo docker build -f ./Dockerfile-alpine -t cloudbot-alpine .`
 
 
 ### Run and Lauch Interactive Shell
